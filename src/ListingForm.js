@@ -48,7 +48,7 @@ function ListingForm({ addListing, toggleForm }) {
         name="name"
         className="form-control"
         placeholder="Enter name"
-        onChange={handleChange}
+      onChange={handleChange}
         value={formData.name}
         aria-label="name"
         required
