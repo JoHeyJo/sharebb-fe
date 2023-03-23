@@ -6,6 +6,7 @@
 function Alert({ alerts }) {
   return (
     <div className="alert alert-success">
+      { console.log('alerts',alerts)}
       {alerts.map((alert, idx) => (
         <p key={idx}>{alert}</p>
       ))}
