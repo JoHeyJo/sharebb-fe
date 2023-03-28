@@ -15,7 +15,7 @@ class ShareBBApi {
   static async request(endpoint, data = {}, method = "get") {
     console.log(BASE_URL)
     console.debug("API Call:", 'endpoint=>,', endpoint, 'data=>', data, 'method=>', method);
-    // console.log("API Call:", 'endpoint,', endpoint, 'data', data, 'method', method);
+    console.log("API Call:", 'endpoint,', endpoint, 'data', data, 'method', method);
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${ShareBBApi.token}` };
