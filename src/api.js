@@ -13,19 +13,19 @@ class ShareBBApi {
   static token = null;
 
   static async request(endpoint, data = {}, method = "get") {
-    // console.log(BASE_URL)
-    // console.debug("API Call:", 'endpoint=>,', endpoint, 'data=>', data, 'method=>', method);
-    // console.log("API Call:", 'endpoint,', endpoint, 'data', data, 'method', method);
+    console.debug("API Call:", endpoint, data, method);
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${ShareBBApi.token}` };
     const params = method === "get" ? data : {};
-
     try {
-      return (await axios({ url, method, data, params, headers })).data;
+      const res = (await axios({ url, method, data, params, headers })).data;
+      console.log(res)
+      return res
     } catch (err) {
       console.error("API Error:", err, err.response);
-      let message = err.response.data.error.message;
+      let message = err.response.data.error;
+      console.log('MESSAGE', message)
       throw Array.isArray(message) ? message : [message];
     }
   }

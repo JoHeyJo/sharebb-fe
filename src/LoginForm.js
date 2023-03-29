@@ -34,7 +34,7 @@ function LoginForm({ login }) {
     } catch (err) {
       setAlerts(err);
       console.log("ERR",err)
-      navigate("/login")
+      // navigate("/")
     }
   }
 
