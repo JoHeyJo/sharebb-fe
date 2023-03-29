@@ -52,7 +52,7 @@ function ListingDetails() {
         <p>{listing.data.location}</p>
         <p>{listing.data.price}</p>
         <p>{listing.data.listingType}</p>
-        <p>{listing.data.detail}</p>
+        <p>{listing.data.details}</p>
         {(currentUser && currentUser.username === listing.data.hostUsername) ?
           <ListingImageForm changeImage={changeImage} id={id} />
           :

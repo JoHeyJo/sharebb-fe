@@ -4,7 +4,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5000";
 
 /** API Class.
  */
-console.log(BASE_URL)
+// console.log(BASE_URL)
 
 class ShareBBApi {
   // Remember, the backend needs to be authorized with a token
@@ -13,8 +13,8 @@ class ShareBBApi {
   static token = null;
 
   static async request(endpoint, data = {}, method = "get") {
-    console.log(BASE_URL)
-    console.debug("API Call:", 'endpoint=>,', endpoint, 'data=>', data, 'method=>', method);
+    // console.log(BASE_URL)
+    // console.debug("API Call:", 'endpoint=>,', endpoint, 'data=>', data, 'method=>', method);
     // console.log("API Call:", 'endpoint,', endpoint, 'data', data, 'method', method);
 
     const url = `${BASE_URL}/${endpoint}`;
@@ -47,14 +47,15 @@ class ShareBBApi {
   /** Register User and return token*/
   static async signup(data) {
     let res = await this.request(`signup`, data, "post");
+    console.log("CREATE user response",res)
     return res.token;
   }
 
   /** Login User and return token*/
   static async login(data) {
     let res = await this.request(`login`, data, "post");
+    console.log("LOGIN user response", res)
     return res.token;
-
   }
 
   /** Get User detail*/

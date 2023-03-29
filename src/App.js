@@ -23,6 +23,7 @@ function App() {
 
   async function signup(formData) {
     const response = await ShareBBApi.signup(formData);
+    // console.log(response)
     ShareBBApi.token = response;
     setToken(response);
   }
