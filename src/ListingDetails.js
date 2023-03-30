@@ -50,7 +50,7 @@ function ListingDetails() {
       <div className="text-start ms-5">
         <h4>{listing.data.name}</h4>
         <p>{listing.data.location}</p>
-        <p>{listing.data.price}</p>
+        <p>{listing.data.price} / night</p>
         <p>{listing.data.listingType}</p>
         <p>{listing.data.details}</p>
         {(currentUser && currentUser.username === listing.data.hostUsername) ?

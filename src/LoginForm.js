@@ -29,12 +29,10 @@ function LoginForm({ login }) {
     evt.preventDefault();
     try {
       await login(formData);
-      console.log('in here')
       navigate("/");
     } catch (err) {
       setAlerts(err);
-      console.log("ERR",err)
-      // navigate("/")
+      setFormData(initialValue);
     }
   }
 

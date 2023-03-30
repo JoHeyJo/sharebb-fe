@@ -12,7 +12,7 @@ function ListingCard({ listing }) {
                 <div className="text-start ms-5">
                     <h4>{listing.name}</h4>
                     <p>{listing.location}</p>
-                    <p>{listing.price}</p>
+                    <p>${listing.price}</p>
                     <p>{listing.listingType}</p>
                     <p>{listing.detail}</p>
                 </div>
