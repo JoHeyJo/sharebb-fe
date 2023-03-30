@@ -7,6 +7,9 @@ import ListingCard from "./ListingCard";
 import { useContext } from "react";
 import UserContext from "./UserContext";
 import SearchForm from "./SearchForm";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars,faImage } from '@fortawesome/free-solid-svg-icons';
+import Carousel from "./Carousel";
 
 /** ListingsList component
  *
@@ -19,6 +22,7 @@ function ListingsList() {
   const [isLoading, setIsLoading] = useState(true);
   const { currentUser } = useContext(UserContext);
   const [toggle, setToggle] = useState(false);
+  const [list, isList] = useState(false);
 
   useEffect(function getListings() {
     async function fetchListingsFromAPI() {
@@ -48,6 +52,12 @@ function ListingsList() {
 
   return (
     <div className="pb-5 container">
+      <button>
+      <FontAwesomeIcon icon={faBars} />
+      </button>
+      <button>
+      <FontAwesomeIcon icon={faImage} />
+      </button>
       <SearchForm searchFor={search} />
 
       {currentUser && (
@@ -60,9 +70,11 @@ function ListingsList() {
         <ListingForm addListing={addListing} toggleForm={toggleForm} />
       )}
 
-      {listings.map((listing) => (
+    <Carousel listings={listings}/>
+
+      {/* {listings.map((listing) => (
         <ListingCard key={listing.id} listing={listing} />
-      ))}
+      ))} */}
     </div>
   );
 }
