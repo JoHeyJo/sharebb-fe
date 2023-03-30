@@ -1,4 +1,13 @@
-.listing-thumbnail{
-    height:150px;
-  }
+.listing-thumbnail {
+  height: 150px;
+}
 
+.listing-carousel {
+  height: 500px;
+}
+
+.ListingList-topbar {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}

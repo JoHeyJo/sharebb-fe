@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
  * linking to their detail page
  * props: listing
  */
-function ListingCard({ listing }) {
+function ListingCard({ listing, isList }) {
     return (
         <Link to={`/listings/${listing.id}`}>
             <div className="bg-dark my-3 d-flex p-3 rounded-3">
-                {listing.imageUrl && <img className="listing-thumbnail" src={listing.imageUrl} alt={`listing-${listing.id}`}/>}
+                {listing.imageUrl && <img className={isList ? "listing-thumbnail" : "listing-carousel"} src={listing.imageUrl} alt={`listing-${listing.id}`}/>}
                 <div className="text-start ms-5">
                     <h4>{listing.name}</h4>
                     <p>{listing.location}</p>

@@ -8,9 +8,10 @@ import { useContext } from "react";
 import UserContext from "./UserContext";
 import SearchForm from "./SearchForm";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars,faImage } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faImage } from '@fortawesome/free-solid-svg-icons';
 import Carousel from "./Carousel";
-
+import './ListingsList.css';
+import Button from 'react-bootstrap/Button';
 /** ListingsList component
  *
  * state: listings
@@ -22,7 +23,7 @@ function ListingsList() {
   const [isLoading, setIsLoading] = useState(true);
   const { currentUser } = useContext(UserContext);
   const [toggle, setToggle] = useState(false);
-  const [list, isList] = useState(false);
+  const [isList, setIsList] = useState(false);
 
   useEffect(function getListings() {
     async function fetchListingsFromAPI() {
@@ -52,13 +53,16 @@ function ListingsList() {
 
   return (
     <div className="pb-5 container">
-      <button>
-      <FontAwesomeIcon icon={faBars} />
-      </button>
-      <button>
-      <FontAwesomeIcon icon={faImage} />
-      </button>
-      <SearchForm searchFor={search} />
+
+      <div className="ListingList-topbar">
+        <Button variant="outline-light">
+          <FontAwesomeIcon icon={faBars} />
+        </Button>
+        <Button variant="outline-light">
+          <FontAwesomeIcon icon={faImage} />
+        </Button>
+        <SearchForm searchFor={search} />
+      </div>
 
       {currentUser && (
         <button className="btn btn-outline-light" onClick={toggleForm}>
@@ -70,11 +74,15 @@ function ListingsList() {
         <ListingForm addListing={addListing} toggleForm={toggleForm} />
       )}
 
-    <Carousel listings={listings}/>
+      {isList
+        ?
+        listings.map((listing) => (
+          <ListingCard key={listing.id} listing={listing} isList={isList} />
+        ))
+        : <Carousel listings={listings} />
+      }
 
-      {/* {listings.map((listing) => (
-        <ListingCard key={listing.id} listing={listing} />
-      ))} */}
+
     </div>
   );
 }

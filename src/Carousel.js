@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import './Carousel';
+import './Carousel.css';
 import ListingCard from './ListingCard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faForward, faBackward } from '@fortawesome/free-solid-svg-icons';
+import Button from 'react-bootstrap/Button';
 
 /** Carousel: displays images and arrows to navigate through them 
  * 
@@ -34,18 +37,29 @@ function Carousel({ listings }) {
     <div className="Carousel">
       {/* <h1>{title}</h1> */}
       <div className="Carousel-main">
-        <i
-          className="fas fa-chevron-circle-left fa-2x"
-          style={{ visibility: currCardIdx === 0 ? "hidden" : 'visible' }}
-          onClick={prev}
-        />
+        <Button className="Carousel-button" variant="outline-light"
+        onClick={prev}
+          style={{
+            visibility: currCardIdx === 0 ? "hidden" : 'visible', 
+            marginLeft: "1rem",
+            marginRight: "1rem"
+          }}
+        >
+          <FontAwesomeIcon icon={faBackward} />
+        </Button>
+
         {console.log(currCard)}
         <ListingCard listing={currCard} />
-        <i
-          className="fas fa-chevron-circle-right fa-2x"
-          onClick={next}
-          style={{ visibility: currCardIdx === total - 1 ? "hidden" : 'visible' }}
-        />
+        <Button variant="outline-light"
+        onClick={next}
+          style={{
+            visibility: currCardIdx === total - 1 ? "hidden" : 'visible',
+            marginLeft: "1rem",
+            marginRight: "1rem"
+          }}>
+
+          <FontAwesomeIcon icon={faForward} />
+        </Button>
       </div>
     </div>
   );
