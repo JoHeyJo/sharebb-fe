@@ -53,38 +53,46 @@ function ListingsList() {
 
   return (
     <div className="pb-5 container">
-
-      <div className="ListingList-topbar">
-        <Button variant="outline-light">
-          <FontAwesomeIcon icon={faBars} />
-        </Button>
-        <Button variant="outline-light">
-          <FontAwesomeIcon icon={faImage} />
-        </Button>
-        <SearchForm searchFor={search} />
-      </div>
-
-      {currentUser && (
-        <button className="btn btn-outline-light" onClick={toggleForm}>
-          Add a listing
-        </button>
-      )}
-
-      {currentUser && toggle && (
-        <ListingForm addListing={addListing} toggleForm={toggleForm} />
-      )}
-
-      {isList
+      {!isList
         ?
-        listings.map((listing) => (
-          <ListingCard key={listing.id} listing={listing} isList={isList} />
-        ))
-        : <Carousel listings={listings} />
-      }
+        <div className="ListingList-topbar">
+          <Button variant="outline-light" onClick={() => setIsList(!isList)}>
+            <FontAwesomeIcon icon={faBars} />
+          </Button>
+          <SearchForm searchFor={search} />
+          </div>
+
+          :
+          <div className="ListingList-topbar">
+            <Button variant="outline-light" onClick={() => setIsList(!isList)}>
+              <FontAwesomeIcon icon={faImage} />
+            </Button>
+            <SearchForm searchFor={search} />
+          </div>
+          }
 
 
+          {currentUser && (
+            <button className="btn btn-outline-light" onClick={toggleForm}>
+              Add a listing
+            </button>
+          )}
+
+          {currentUser && toggle && (
+            <ListingForm addListing={addListing} toggleForm={toggleForm} />
+          )}
+
+          {isList
+            ?
+            listings.map((listing) => (
+              <ListingCard key={listing.id} listing={listing} isList={isList} />
+            ))
+            : <Carousel listings={listings} />
+          }
     </div>
+
+
   );
 }
 
-export default ListingsList;
+      export default ListingsList;
