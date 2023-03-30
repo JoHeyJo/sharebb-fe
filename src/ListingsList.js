@@ -57,7 +57,7 @@ function ListingsList() {
         ?
         <div className="ListingList-topbar">
           <Button variant="outline-light" onClick={() => setIsList(!isList)}>
-            <FontAwesomeIcon icon={faBars} />
+            <FontAwesomeIcon  icon={faBars} />
           </Button>
           <SearchForm searchFor={search} />
           </div>
