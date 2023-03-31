@@ -40,8 +40,10 @@ function SearchForm({ searchFor, options }) {
   }
 
   /** Update form fields */
-  function handleChange(evt) {
-    setSearchTerm(evt.target.value);
+  function handleChange(selectedOption) {
+    // evt.preventDefault();
+    console.log(selectedOption)
+    setSearchTerm(selectedOption ? selectedOption.label : "");
   }
 
 
@@ -57,18 +59,17 @@ function SearchForm({ searchFor, options }) {
               value={searchTerm}
               onChange={handleChange}
               /> */}
-            {/* <select className="form-control bg-dark"
-              name="searchTerm"
-              placeholder="Enter search term..."
-              value={searchTerm}
-              onChange={handleChange}></select> */}
             <Select
+            // debug
               // className="form-control bg-dark"
-              value={searchTerm}
+              // value={searchTerm.label}
               name="searchTerm"
-              onChange={handleChange}
+              // onChange={handleChange}
+              // onChangeonChange={handleSubmit}
+              onChange={(selectedOption) => handleChange(selectedOption)}
               options={filterOptions}
               isSearchable
+              isClearable
               placeholder="Search listings"
               styles={{
                 option: (styles) => ({
