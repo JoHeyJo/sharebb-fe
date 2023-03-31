@@ -23,7 +23,7 @@ function ListingsList() {
   const [isLoading, setIsLoading] = useState(true);
   const { currentUser } = useContext(UserContext);
   const [toggle, setToggle] = useState(false);
-  const [isList, setIsList] = useState(false);
+  const [isList, setIsList] = useState(true);
 
   useEffect(function getListings() {
     async function fetchListingsFromAPI() {
@@ -55,7 +55,7 @@ function ListingsList() {
     <div className="pb-5 container">
       {!isList
         ?
-        <div className="ListingList-topbar">
+        <div className="ListingList-topbar col-10">
           <Button variant="outline-light" onClick={() => setIsList(!isList)}>
             <FontAwesomeIcon  icon={faBars} />
           </Button>

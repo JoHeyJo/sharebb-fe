@@ -50,8 +50,8 @@ function SearchForm({ searchFor, options }) {
   return (
     <div className="SearchForm mb-4">
       <form onSubmit={handleSubmit}>
-        <div className="search-input row justify-content-center">
-          <div className="col-8">
+        <div className="search-input justify-content-center">
+          <div className="">
             {/* <input
               className="form-control bg-dark"
               name="searchTerm"
@@ -62,10 +62,7 @@ function SearchForm({ searchFor, options }) {
             <Select
             // debug
               className="form-control bg-dark"
-              // value={searchTerm.label}
               name="searchTerm"
-              // onChange={handleChange}
-              // onChangeonChange={handleSubmit}
               onChange={(selectedOption) => handleChange(selectedOption)}
               options={filterOptions}
               isSearchable
@@ -80,11 +77,9 @@ function SearchForm({ searchFor, options }) {
             />
 
           </div>
-          <div className="col-auto">
             <button type="submit" className="btn btn-outline-light">
               Submit
             </button>
-          </div>
         </div>
       </form>
     </div>
