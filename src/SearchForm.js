@@ -61,7 +61,7 @@ function SearchForm({ searchFor, options }) {
               /> */}
             <Select
             // debug
-              // className="form-control bg-dark"
+              className="form-control bg-dark"
               // value={searchTerm.label}
               name="searchTerm"
               // onChange={handleChange}
