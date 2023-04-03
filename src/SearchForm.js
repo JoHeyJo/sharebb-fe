@@ -48,7 +48,7 @@ function SearchForm({ searchFor, options, updateOptionId }) {
   }
 
   function handleClear() {
-
+    
   }
 
   // useEffect(function resetSearch(){
@@ -73,7 +73,8 @@ function SearchForm({ searchFor, options, updateOptionId }) {
               name="searchTerm"
               onChange={(selectedOption) => {
                 if (!selectedOption) {
-                  setSearchTerm(allOptions);
+                  setSearchTerm({ label: "", value: "" });
+                  handleClear()
                 } else {
                   handleChange(selectedOption);
                 }
