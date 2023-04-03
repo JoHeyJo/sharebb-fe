@@ -49,17 +49,25 @@ function ListingsList() {
     setToggle((toggle) => !toggle);
   }
 
+  function updateListings(listingId){
+    console.log(listingId,listings)
+    const filteredListing = listings.filter(l => listingId === l.id)
+    setListings(filteredListing)
+    
+    console.log(filteredListing)
+  }
+
   if (isLoading) return <LoadingSpinner />;
 
   return (
     <div className="pb-5 container">
       {!isList
         ?
-        <div className="ListingList-topbar col-10">
+        <div className="ListingList-topbar">
           <Button variant="outline-light" onClick={() => setIsList(!isList)}>
-            <FontAwesomeIcon  icon={faBars} />
+            <FontAwesomeIcon icon={faBars} />
           </Button>
-          <SearchForm options={listings}searchFor={search} />
+          <SearchForm updateOptionId={updateListings} options={listings} searchFor={search} />
           </div>
 
           :
@@ -67,7 +75,7 @@ function ListingsList() {
             <Button variant="outline-light" onClick={() => setIsList(!isList)}>
               <FontAwesomeIcon icon={faImage} />
             </Button>
-            <SearchForm options={listings}searchFor={search} />
+            <SearchForm updateOptionId={updateListings} options={listings} searchFor={search} />
           </div>
           }
 

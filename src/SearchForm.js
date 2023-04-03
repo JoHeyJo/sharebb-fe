@@ -12,40 +12,39 @@ import "./SearchForm.css";
  * { CompanyList, JobList } -> SearchForm
  */
 
-function SearchForm({ searchFor, options }) {
-  const [searchTerm, setSearchTerm] = useState("");
-  // console.debug("SearchForm", "searchFor=", typeof searchFor);
-  // console.log(options)
+function SearchForm({ searchFor, options, updateOptionId }) {
+  const [searchTerm, setSearchTerm] = useState({ label: "", value: "" });
   // dynamically searches for listings that match characters in search bar
   const filterOptions =
-    searchTerm === ''
+    searchTerm.label === ''
       ? options.reduce((options, option) => {
         options.push({ label: option.name, value: option.id })
         return options;
       }, [])
       : options.reduce((currentOptions, option) => {
-        let isOptionAvailable = option.name.toLowerCase().includes(searchTerm.toLowerCase());
+        console.log('>>>>>>>>>','seatchterm',searchTerm.label,'option',option,option.name)
+        let isOptionAvailable = option.name.toLowerCase().includes(searchTerm.label.toLowerCase());
         if (isOptionAvailable) currentOptions.push({ label: option.name, value: option.id });
         return currentOptions;
       }, []);
 
-  console.log(filterOptions)
+  // console.log(filterOptions)
 
   /** Tell parent to filter */
   function handleSubmit(evt) {
     // take care of accidentally trying to search for just spaces
     evt.preventDefault();
-    searchFor(searchTerm.trim() || undefined);
-    setSearchTerm(searchTerm.trim());
+    searchFor(searchTerm.label.trim() || undefined);
+    // setSearchTerm(searchTerm.label.trim());
+    updateOptionId(searchTerm.value);
   }
 
   /** Update form fields */
   function handleChange(selectedOption) {
     // evt.preventDefault();
-    console.log(selectedOption)
-    setSearchTerm(selectedOption ? selectedOption.label : "");
+    console.log(selectedOption.value)
+    setSearchTerm(selectedOption ? selectedOption: "");
   }
-
 
   return (
     <div className="SearchForm mb-4">
