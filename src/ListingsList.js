@@ -67,7 +67,7 @@ function ListingsList() {
           <Button variant="outline-light" onClick={() => setIsList(!isList)}>
             <FontAwesomeIcon icon={faBars} />
           </Button>
-          <SearchForm updateOptionId={updateListings} options={listings} searchFor={search} />
+          <SearchForm updateOptionId={updateListings} options={listings} />
           </div>
 
           :
@@ -75,7 +75,7 @@ function ListingsList() {
             <Button variant="outline-light" onClick={() => setIsList(!isList)}>
               <FontAwesomeIcon icon={faImage} />
             </Button>
-            <SearchForm updateOptionId={updateListings} options={listings} searchFor={search} />
+            <SearchForm updateOptionId={updateListings} options={listings} />
           </div>
           }
 

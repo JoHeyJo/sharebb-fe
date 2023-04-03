@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from 'react-select';
 import "./SearchForm.css";
 
@@ -13,6 +13,7 @@ import "./SearchForm.css";
  */
 
 function SearchForm({ searchFor, options, updateOptionId }) {
+  const [allOptions, setAllOptions] = useState(options)
   const [searchTerm, setSearchTerm] = useState({ label: "", value: "" });
   // dynamically searches for listings that match characters in search bar
   const filterOptions =
@@ -22,7 +23,7 @@ function SearchForm({ searchFor, options, updateOptionId }) {
         return options;
       }, [])
       : options.reduce((currentOptions, option) => {
-        console.log('>>>>>>>>>','seatchterm',searchTerm.label,'option',option,option.name)
+        console.log('***', 'searchTerm', searchTerm,'option',option)
         let isOptionAvailable = option.name.toLowerCase().includes(searchTerm.label.toLowerCase());
         if (isOptionAvailable) currentOptions.push({ label: option.name, value: option.id });
         return currentOptions;
@@ -34,7 +35,7 @@ function SearchForm({ searchFor, options, updateOptionId }) {
   function handleSubmit(evt) {
     // take care of accidentally trying to search for just spaces
     evt.preventDefault();
-    searchFor(searchTerm.label.trim() || undefined);
+    // searchFor(searchTerm.label.trim() || undefined);
     // setSearchTerm(searchTerm.label.trim());
     updateOptionId(searchTerm.value);
   }
@@ -43,8 +44,16 @@ function SearchForm({ searchFor, options, updateOptionId }) {
   function handleChange(selectedOption) {
     // evt.preventDefault();
     console.log(selectedOption.value)
-    setSearchTerm(selectedOption ? selectedOption: "");
+    setSearchTerm(selectedOption ? selectedOption : "");
   }
+
+  function handleClear() {
+
+  }
+
+  // useEffect(function resetSearch(){
+  //   options = allOptions
+  // },[searchTerm])
 
   return (
     <div className="SearchForm mb-4">
@@ -59,10 +68,16 @@ function SearchForm({ searchFor, options, updateOptionId }) {
               onChange={handleChange}
               /> */}
             <Select
-            // debug
+              // debug
               className="form-control bg-dark"
               name="searchTerm"
-              onChange={(selectedOption) => handleChange(selectedOption)}
+              onChange={(selectedOption) => {
+                if (!selectedOption) {
+                  setSearchTerm(allOptions);
+                } else {
+                  handleChange(selectedOption);
+                }
+              }}
               options={filterOptions}
               isSearchable
               isClearable
@@ -76,9 +91,9 @@ function SearchForm({ searchFor, options, updateOptionId }) {
             />
 
           </div>
-            <button type="submit" className="btn btn-outline-light">
-              Submit
-            </button>
+          <button type="submit" className="btn btn-outline-light">
+            Submit
+          </button>
         </div>
       </form>
     </div>
