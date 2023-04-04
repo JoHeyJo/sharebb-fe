@@ -24,6 +24,7 @@ function ListingsList() {
   const { currentUser } = useContext(UserContext);
   const [toggle, setToggle] = useState(false);
   const [isList, setIsList] = useState(true);
+  const [searchFilter, setSearchFilter] = useState([]);
 
   useEffect(function getListings() {
     async function fetchListingsFromAPI() {
@@ -49,12 +50,14 @@ function ListingsList() {
     setToggle((toggle) => !toggle);
   }
 
-  function updateListings(listingId){
-    console.log(listingId,listings)
-    const filteredListing = listings.filter(l => listingId === l.id)
-    setListings(filteredListing)
-    
-    console.log(filteredListing)
+  function updateListings(id) {
+    // const filteredListing = listings.searchFilter(l => listingId === l.id)
+    // setListings(filteredListing)
+    setSearchFilter([id])
+  }
+
+  function updateFilters(id) {
+    setSearchFilter(f => [...f, id])
   }
 
   if (isLoading) return <LoadingSpinner />;
@@ -68,39 +71,45 @@ function ListingsList() {
             <FontAwesomeIcon icon={faBars} />
           </Button>
           <SearchForm updateOptionId={updateListings} options={listings} />
-          </div>
+        </div>
 
-          :
-          <div className="ListingList-topbar">
-            <Button variant="outline-light" onClick={() => setIsList(!isList)}>
-              <FontAwesomeIcon icon={faImage} />
-            </Button>
-            <SearchForm updateOptionId={updateListings} options={listings} />
-          </div>
-          }
+        :
+        <div className="ListingList-topbar">
+          <Button variant="outline-light" onClick={() => setIsList(!isList)}>
+            <FontAwesomeIcon icon={faImage} />
+          </Button>
+          <SearchForm updateOptionId={updateListings} options={listings} />
+        </div>
+      }
 
 
-          {currentUser && (
-            <button className="btn btn-outline-light" onClick={toggleForm}>
-              Add a listing
-            </button>
-          )}
+      {currentUser && (
+        <button className="btn btn-outline-light" onClick={toggleForm}>
+          Add a listing
+        </button>
+      )}
 
-          {currentUser && toggle && (
-            <ListingForm addListing={addListing} toggleForm={toggleForm} />
-          )}
+      {currentUser && toggle && (
+        <ListingForm addListing={addListing} toggleForm={toggleForm} />
+      )}
 
-          {isList
-            ?
-            listings.map((listing) => (
-              <ListingCard key={listing.id} listing={listing} isList={isList} />
-            ))
-            : <Carousel listings={listings} />
-          }
+      {isList
+        ?
+        listings.map((listing) => (
+          (searchFilter.length < 1 
+          && 
+          <ListingCard key={listing.id} listing={listing} isList={isList} />)
+          ||
+          (searchFilter.includes(listing.id)
+          &&
+          <ListingCard key={listing.id} listing={listing} isList={isList} />)
+        ))
+        : <Carousel listings={listings} />
+      }
     </div>
 
 
   );
 }
 
-      export default ListingsList;
+export default ListingsList;

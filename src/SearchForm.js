@@ -47,14 +47,6 @@ function SearchForm({ searchFor, options, updateOptionId }) {
     setSearchTerm(selectedOption ? selectedOption : "");
   }
 
-  function handleClear() {
-    
-  }
-
-  // useEffect(function resetSearch(){
-  //   options = allOptions
-  // },[searchTerm])
-
   return (
     <div className="SearchForm mb-4">
       <form onSubmit={handleSubmit}>
@@ -74,7 +66,6 @@ function SearchForm({ searchFor, options, updateOptionId }) {
               onChange={(selectedOption) => {
                 if (!selectedOption) {
                   setSearchTerm({ label: "", value: "" });
-                  handleClear()
                 } else {
                   handleChange(selectedOption);
                 }
