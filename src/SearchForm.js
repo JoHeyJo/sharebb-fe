@@ -23,15 +23,13 @@ function SearchForm({ searchFor, options, updateOptionId }) {
         return options;
       }, [])
       : options.reduce((currentOptions, option) => {
-        console.log('***', 'searchTerm', searchTerm,'option',option)
         let isOptionAvailable = option.name.toLowerCase().includes(searchTerm.label.toLowerCase());
         if (isOptionAvailable) currentOptions.push({ label: option.name, value: option.id });
         return currentOptions;
       }, []);
 
-  // console.log(filterOptions)
 
-  /** Tell parent to filter */
+  /**Submits id for filter*/
   function handleSubmit(evt) {
     // take care of accidentally trying to search for just spaces
     evt.preventDefault();
@@ -47,6 +45,10 @@ function SearchForm({ searchFor, options, updateOptionId }) {
     setSearchTerm(selectedOption ? selectedOption : "");
   }
 
+  function onClear(){
+    updateOptionId(0)
+  }
+
   return (
     <div className="SearchForm mb-4">
       <form onSubmit={handleSubmit}>
@@ -60,12 +62,12 @@ function SearchForm({ searchFor, options, updateOptionId }) {
               onChange={handleChange}
               /> */}
             <Select
-              // debug
               className="form-control bg-dark"
               name="searchTerm"
               onChange={(selectedOption) => {
                 if (!selectedOption) {
                   setSearchTerm({ label: "", value: "" });
+                  onClear();
                 } else {
                   handleChange(selectedOption);
                 }

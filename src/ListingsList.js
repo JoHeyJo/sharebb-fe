@@ -24,7 +24,7 @@ function ListingsList() {
   const { currentUser } = useContext(UserContext);
   const [toggle, setToggle] = useState(false);
   const [isList, setIsList] = useState(true);
-  const [searchFilter, setSearchFilter] = useState([]);
+  const [searchFilter, setSearchFilter] = useState([0]);
 
   useEffect(function getListings() {
     async function fetchListingsFromAPI() {
@@ -50,14 +50,8 @@ function ListingsList() {
     setToggle((toggle) => !toggle);
   }
 
-  function updateListings(id) {
-    // const filteredListing = listings.searchFilter(l => listingId === l.id)
-    // setListings(filteredListing)
+  function updateListings(id=0) {
     setSearchFilter([id])
-  }
-
-  function updateFilters(id) {
-    setSearchFilter(f => [...f, id])
   }
 
   if (isLoading) return <LoadingSpinner />;
@@ -96,7 +90,7 @@ function ListingsList() {
       {isList
         ?
         listings.map((listing) => (
-          (searchFilter.length < 1 
+          (searchFilter.includes(0)
           && 
           <ListingCard key={listing.id} listing={listing} isList={isList} />)
           ||
@@ -104,7 +98,7 @@ function ListingsList() {
           &&
           <ListingCard key={listing.id} listing={listing} isList={isList} />)
         ))
-        : <Carousel listings={listings} />
+        : <Carousel listingId={searchFilter[0] - 1 < 0 ? 0 : searchFilter[0] - 1} listings={listings} />
       }
     </div>
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './Carousel.css';
 import ListingCard from './ListingCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,22 +17,27 @@ import Button from 'react-bootstrap/Button';
  * App --> Carousel --> Card
 */
 
-
-function Carousel({ listings }) {
-  const [currCardIdx, setCurrCardIdx] = useState(2);
+function Carousel({ listingId, listings }) {
+  const [currCardIdx, setCurrCardIdx] = useState(0);
 
   const currCard = listings[currCardIdx];
   const total = listings.length;
-
 
   /** Decrements currCardIdx state by 1 */
   function prev() {
     setCurrCardIdx(currCardIdx - 1);
   }
+
   /** Increments currCardIdx state by 1 */
   function next() {
     setCurrCardIdx(currCardIdx + 1);
   }
+
+  useEffect(() => {
+    setCurrCardIdx(listingId)
+  },);
+  
+
   return (
     <div className="Carousel">
       {/* <h1>{title}</h1> */}
@@ -43,13 +48,14 @@ function Carousel({ listings }) {
             visibility: currCardIdx === 0 ? "hidden" : 'visible', 
             marginLeft: "1rem",
             marginRight: "1rem"
-          }}
-        >
+          }}>
           <FontAwesomeIcon icon={faBackward} />
         </Button>
-
+        {console.log(listings, currCardIdx,listingId)}
         {console.log(currCard)}
+
         <ListingCard listing={currCard} />
+
         <Button variant="outline-light"
         onClick={next}
           style={{
@@ -57,7 +63,6 @@ function Carousel({ listings }) {
             marginLeft: "1rem",
             marginRight: "1rem"
           }}>
-
           <FontAwesomeIcon icon={faForward} />
         </Button>
       </div>
