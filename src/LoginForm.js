@@ -37,7 +37,7 @@ function LoginForm({ login }) {
   }
 
   const formInputsHTML = (
-    <div className="mb-3">
+    <div className="mb-3 d-flex flex-column align-items-center">
       <label htmlFor="signup-username">Username: </label>
       <input
         id="signup-username"
@@ -64,12 +64,11 @@ function LoginForm({ login }) {
 
   return (
     <form
-      className="justify-content-center container bg-dark mt-5 py-3 rounded-3"
+      className="container bg-dark mt-5 py-3 rounded-3"
       onSubmit={handleSubmit}
     >
       {formInputsHTML}
-      {/* {console.log(alerts)} */}
-      {alerts && <Alert alerts={alerts} />}
+      {alerts && <Alert alerts={[alerts]} />}
 
       <button className="btn-outline-light btn ms-3 py-1 btn-sm">
         Login
