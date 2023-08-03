@@ -26,7 +26,7 @@ class ShareBBApi {
       console.error("API Error:", err, err.response);
       let message = err.response.data.error;
       console.log('MESSAGE', message)
-      throw Array.isArray(message) ? message : [message];
+      throw new Array.isArray(message) ? message : [message];
     }
   }
 
