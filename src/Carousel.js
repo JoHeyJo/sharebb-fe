@@ -25,17 +25,17 @@ function Carousel({ listingId, listings }) {
 
   /** Decrements currCardIdx state by 1 */
   function prev() {
-    setCurrCardIdx(currCardIdx - 1);
+    setCurrCardIdx(idx => idx - 1);
   }
 
   /** Increments currCardIdx state by 1 */
   function next() {
-    setCurrCardIdx(currCardIdx + 1);
+    setCurrCardIdx(idx => idx + 1);
   }
 
-  useEffect(() => {
-    setCurrCardIdx(listingId)
-  },);
+  // useEffect(() => {
+  //   setCurrCardIdx(listingId)
+  // },);
   
 
   return (
@@ -51,8 +51,7 @@ function Carousel({ listingId, listings }) {
           }}>
           <FontAwesomeIcon icon={faBackward} />
         </Button>
-        {console.log(listings, currCardIdx,listingId)}
-        {console.log(currCard)}
+
 
         <ListingCard listing={currCard} />
 

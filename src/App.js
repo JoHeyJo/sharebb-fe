@@ -46,16 +46,16 @@ function App() {
    *  - makes request to API for user details from token payload
    *  - updates currentUser and sets token in localStorage
    */
-   useEffect(
+  useEffect(
     function getUser() {
       async function getNewUser() {
         const username = jwt_decode(token).sub;
-        try{
+        try {
           const response = await ShareBBApi.getUser(username);
           setCurrentUser({ ...response });
           localStorage.setItem("token", token);
           setIsLoading(false);
-        } catch (err){
+        } catch (err) {
           localStorage.clear();
           setIsLoading(false)
         }

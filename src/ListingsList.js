@@ -42,7 +42,7 @@ function ListingsList() {
 
   /** Triggered by search form submit; reloads jobs. */
   async function search(listing) {
-    let response = await ShareBBApi.getListings(listing);
+    let response = await ShareBBApi.getListings();
     setListings(response);
   }
 
@@ -98,6 +98,7 @@ function ListingsList() {
           &&
           <ListingCard key={listing.id} listing={listing} isList={isList} />)
         ))
+        //refactor this mess...adjust the num used to search for correct image in carousel b/c listing searches by 0 index and carousel searches by 1 value
         : <Carousel listingId={searchFilter[0] - 1 < 0 ? 0 : searchFilter[0] - 1} listings={listings} />
       }
     </div>
