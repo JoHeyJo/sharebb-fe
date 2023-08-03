@@ -33,10 +33,6 @@ function Carousel({ listingId, listings }) {
     setCurrCardIdx(idx => idx + 1);
   }
 
-  // useEffect(() => {
-  //   setCurrCardIdx(listingId)
-  // },);
-  
 
   return (
     <div className="Carousel">
