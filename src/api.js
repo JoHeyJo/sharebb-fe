@@ -24,9 +24,9 @@ class ShareBBApi {
       return res
     } catch (err) {
       if (err.response && err.response.data) {
-        let message = err.response.data.error;
+        let message = err.response.data.error || ["Invalid login credentials."]
         console.log('message',err)
-        console.log('message',message)
+        console.log('message',!!message)
         throw Array.isArray(message) ? message : [message];
       } else if (err.request) {
         throw ['Network error. Please check your internet connection.'];
