@@ -23,11 +23,14 @@ class ShareBBApi {
       console.log(res)
       return res
     } catch (err) {
-      console.error("API Error:", err);
-      let message = err.response.data.error;
-      console.log('MESSAGE', message)
-      console.log('thown error', Array.isArray(message) ? message : [message])
-      throw (Array.isArray(message) ? message : [message]);
+      if (err.response && err.response.data) {
+        let message = err.response.data.error;
+        throw Array.isArray(message) ? message : [message];
+      } else if (err.request) {
+        throw ['Network error. Please check your internet connection.'];
+      } else {
+        throw ['An unexpected error occurred.'];
+      }
     }
   }
 
@@ -56,7 +59,6 @@ class ShareBBApi {
   /** Login User and return token*/
   static async login(data) {
     let res = await this.request(`login`, data, "post");
-    console.log("LOGIN user response", res)
     return res.token;
   }
 
