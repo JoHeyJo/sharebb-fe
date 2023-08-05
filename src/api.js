@@ -25,6 +25,7 @@ class ShareBBApi {
     } catch (err) {
       if (err.response && err.response.data) {
         let message = err.response.data.error;
+        console.log('message',message)
         throw Array.isArray(message) ? message : [message];
       } else if (err.request) {
         throw ['Network error. Please check your internet connection.'];
