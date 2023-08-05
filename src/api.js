@@ -23,10 +23,11 @@ class ShareBBApi {
       console.log(res)
       return res
     } catch (err) {
-      console.error("API Error:", err, err.response);
+      console.error("API Error:", err);
       let message = err.response.data.error;
       console.log('MESSAGE', message)
-      throw new Array.isArray(message) ? message : [message];
+      console.log('thown error', Array.isArray(message) ? message : [message])
+      throw (Array.isArray(message) ? message : [message]);
     }
   }
 

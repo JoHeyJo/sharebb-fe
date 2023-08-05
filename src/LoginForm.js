@@ -31,7 +31,8 @@ function LoginForm({ login }) {
       await login(formData);
       navigate("/");
     } catch (err) {
-      setAlerts(err);
+      console.log('err',err)
+      setAlerts([err]);
       setFormData(initialValue);
     }
   }
