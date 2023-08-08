@@ -38,6 +38,9 @@ function Carousel({ listingId, listings }) {
     <div className="Carousel">
       {/* <h1>{title}</h1> */}
       <div className="Carousel-main">
+
+        <ListingCard listing={currCard} />
+        
         <Button className="Carousel-button" variant="outline-light"
         onClick={prev}
           style={{
@@ -48,9 +51,6 @@ function Carousel({ listingId, listings }) {
           <FontAwesomeIcon icon={faBackward} />
         </Button>
 
-
-        <ListingCard listing={currCard} />
-
         <Button variant="outline-light"
         onClick={next}
           style={{
@@ -60,6 +60,9 @@ function Carousel({ listingId, listings }) {
           }}>
           <FontAwesomeIcon icon={faForward} />
         </Button>
+
+       
+
       </div>
     </div>
   );
