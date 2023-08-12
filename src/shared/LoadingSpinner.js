@@ -4,6 +4,7 @@ import "./LoadingSpinner.css";
 function LoadingSpinner() {
   return (
     <div className="LoadingSpinner-container">
+      <h1>Please give the server a moment...</h1>
       <svg
         role="status"
         className="spinner animation-spin"
