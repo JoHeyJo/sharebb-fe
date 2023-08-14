@@ -31,7 +31,6 @@ function LoginForm({ login }) {
       await login(formData);
       navigate("/");
     } catch (err) {
-      console.log('err',err)
       setAlerts([err]);
       setFormData(initialValue);
     }
@@ -69,7 +68,6 @@ function LoginForm({ login }) {
       onSubmit={handleSubmit}
     >
       {formInputsHTML}
-      {console.log('alerts',alerts)}
       {alerts && <Alert alerts={alerts} />}
 
       <button className="btn-outline-light btn ms-3 py-1 btn-sm">

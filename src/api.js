@@ -20,13 +20,10 @@ class ShareBBApi {
     const params = method === "get" ? data : {};
     try {
       const res = (await axios({ url, method, data, params, headers })).data;
-      console.log(res)
       return res
     } catch (err) {
       if (err.response && err.response.data) {
         let message = err.response.data.error || ["Invalid login credentials."]
-        console.log('message',err)
-        console.log('message',!!message)
         throw Array.isArray(message) ? message : [message];
       } else if (err.request) {
         throw ['Network error. Please check your internet connection.'];

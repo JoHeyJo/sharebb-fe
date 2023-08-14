@@ -35,8 +35,7 @@ function ListingForm({ addListing, toggleForm }) {
         toggleForm()
       },2000)
     } catch (err) {
-      console.log("errors",err)
-      // setAlerts(err)
+      setAlerts([err])
     }
   }
 
