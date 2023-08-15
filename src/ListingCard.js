@@ -5,7 +5,8 @@ import "./ListingCard.css";
  * linking to their detail page
  * props: listing
  */
-function ListingCard({ listing, isList }) {
+function ListingCard({ listing, isList, index }) {
+    console.log(listing)
     return (
         <Link to={`/listings/${listing.id}`}>
             <div className="bg-dark my-3 d-flex p-3 rounded-3 ListingCard-card">
@@ -15,7 +16,7 @@ function ListingCard({ listing, isList }) {
                     <p>{listing.location}</p>
                     <p>${listing.price}</p>
                     <p>{listing.listingType}</p>
-                    <p>{listing.detail}</p>
+                    <p>{index !== undefined && listing.details}</p>
                 </div>
             </div>
         </Link>

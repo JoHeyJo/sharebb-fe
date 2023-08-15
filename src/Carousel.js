@@ -39,7 +39,7 @@ function Carousel({ listingId, listings }) {
       {/* <h1>{title}</h1> */}
       <div className="Carousel-main">
 
-        <ListingCard listing={currCard} />
+        <ListingCard listing={currCard} index ={currCard}/>
         
         <Button className="Carousel-button" variant="outline-light"
         onClick={prev}
