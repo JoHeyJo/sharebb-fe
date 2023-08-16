@@ -42,6 +42,7 @@ function Carousel({ listingId, listings }) {
     <div className="Carousel">
       {/* <h1>{title}</h1> */}
       <div className="Carousel-main">
+    {console.log('listings in Carousel',listings)}
     {console.log('card in Carousel',currCard)}
         <ListingCard listing={currCard}/>
         
