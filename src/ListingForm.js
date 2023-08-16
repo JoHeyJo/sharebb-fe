@@ -40,7 +40,7 @@ function ListingForm({ addListing, toggleForm }) {
   }
 
   const formInputsHTML = (
-    <div className="mb-3">
+    <div className="mb-3 d-flex flex-column align-items-center">
       <label htmlFor="name">Name: </label>
       <input
         id="name"
