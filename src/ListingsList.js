@@ -50,7 +50,7 @@ function ListingsList() {
     setToggle((toggle) => !toggle);
   }
 
-  function updateListings(id) {
+  function updateListings(id=0) {
     console.log(id)
     setSearchFilter([id])
   }

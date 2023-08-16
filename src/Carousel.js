@@ -34,8 +34,22 @@ function Carousel({ listingId, listings }) {
     setCurrCardIdx(idx => idx + 1);
   }
 
+  function findIndex(listings,id){
+    let idx = undefined;
+    for (let i = 0; i < listings.length; i++) {
+      if(listings[i].id === id) {
+        return idx = i
+      };
+    }
+    return idx;
+  }
+
   useEffect(()=>{
-    setCurrCardIdx(listingId)
+    if(listingId === 0){
+      setCurrCardIdx(0)
+    } else {
+      const idx = findIndex(listings,listingId);
+    }
   },[listingId])
 
   return (
