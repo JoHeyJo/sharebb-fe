@@ -50,15 +50,16 @@ function ListingsList() {
     setToggle((toggle) => !toggle);
   }
 
-  function updateListings(id=0) {
+  function updateListings(id) {
     console.log(id)
     setSearchFilter([id])
   }
 
   if (isLoading) return <LoadingSpinner />;
-
+  console.log('id in ListingList',searchFilter)
   return (
     <div className="pb-5 container">
+      {/* Renders search bar corresponding to view(list or landscape) */}
       {!isList
         ?
         <div className="ListingList-topbar">
@@ -77,13 +78,13 @@ function ListingsList() {
         </div>
       }
 
-
+      {/* adds a button for logged in user to add a listing */}
       {currentUser && (
         <button className="btn btn-outline-light" onClick={toggleForm}>
           Add a listing
         </button>
       )}
-
+      {/* shows form to add listing for logged in user */}
       {currentUser && toggle && (
         <ListingForm addListing={addListing} toggleForm={toggleForm} />
       )}
@@ -91,13 +92,19 @@ function ListingsList() {
       {isList
         ?
         listings.map((listing) => (
-          (searchFilter.includes(0)
-          && 
-          <ListingCard key={listing.id} listing={listing} isList={isList} />)
+          // shows the entire list of rendered listings when nothing is being actively search
+          (
+            searchFilter.includes(0)
+            &&
+            <ListingCard key={listing.id} listing={listing} isList={isList} />
+          )
           ||
-          (searchFilter.includes(listing.id)
-          &&
-          <ListingCard key={listing.id} listing={listing} isList={isList} />)
+          // shows selected list in list view once a listing is selected or search
+          (
+            searchFilter.includes(listing.id)
+            &&
+           <ListingCard key={listing.id} listing={listing} isList={isList} />
+          )
         ))
         //refactor this mess...adjust the num used to search for correct image in carousel b/c listing searches by 0 index and carousel searches by 1 value
         : <Carousel listingId={searchFilter[0] - 1 < 0 ? 0 : searchFilter[0] - 1} listings={listings} />
