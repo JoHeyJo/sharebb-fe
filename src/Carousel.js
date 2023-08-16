@@ -19,7 +19,8 @@ import Button from 'react-bootstrap/Button';
 
 function Carousel({ listingId, listings }) {
   const [currCardIdx, setCurrCardIdx] = useState(0);
-
+  console.log('id in Carousel',listingId)
+  console.log('index in Carousel',currCardIdx)
   const currCard = listings[currCardIdx];
   const total = listings.length;
 
