@@ -49,6 +49,7 @@ function Carousel({ listingId, listings }) {
       setCurrCardIdx(0)
     } else {
       const idx = findIndex(listings,listingId);
+      setCurrCardIdx(idx + 1);
     }
   },[listingId])
 
