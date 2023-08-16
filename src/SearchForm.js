@@ -36,6 +36,7 @@ function SearchForm({ searchFor, options, updateOptionId }) {
     // searchFor(searchTerm.label.trim() || undefined);
     // setSearchTerm(searchTerm.label.trim());
     updateOptionId(searchTerm.value);
+    console.log(searchTerm.value)
   }
 
   /** Update form fields */

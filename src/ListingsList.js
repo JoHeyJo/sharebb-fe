@@ -40,7 +40,7 @@ function ListingsList() {
     setListings([...listings, response]);
   }
 
-  /** Triggered by search form submit; reloads jobs. */
+  /** Triggered by search form submit; reloads. */
   async function search(listing) {
     let response = await ShareBBApi.getListings();
     setListings(response);
@@ -51,6 +51,7 @@ function ListingsList() {
   }
 
   function updateListings(id=0) {
+    console.log(id)
     setSearchFilter([id])
   }
 

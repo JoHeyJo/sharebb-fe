@@ -33,13 +33,16 @@ function Carousel({ listingId, listings }) {
     setCurrCardIdx(idx => idx + 1);
   }
 
+  useEffect(()=>{
+    setCurrCardIdx(listingId)
+  },[listingId])
 
   return (
     <div className="Carousel">
       {/* <h1>{title}</h1> */}
       <div className="Carousel-main">
 
-        <ListingCard listing={currCard} index ={currCard}/>
+        <ListingCard listing={currCard} index={currCard}/>
         
         <Button className="Carousel-button" variant="outline-light"
         onClick={prev}
